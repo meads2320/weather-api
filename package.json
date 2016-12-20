@@ -1,0 +1,21 @@
+{
+  "name": "weather-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "forecast": "^0.3.2",
+    "moment": "^2.17.1",
+    "noaa-forecasts": "0.0.4",
+    "util": "^0.10.3"
+  }
+}
