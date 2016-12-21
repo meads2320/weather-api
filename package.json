@@ -16,6 +16,8 @@
     "forecast": "^0.3.2",
     "moment": "^2.17.1",
     "noaa-forecasts": "0.0.4",
-    "util": "^0.10.3"
+    "util": "^0.10.3",
+    "weather-js": "^1.0.2",
+    "yahoo-weather": "^2.2.2"
   }
 }

@@ -1,13 +1,24 @@
 var noaaForecaster = require('noaa-forecasts');
 var moment = require('moment');
 var inspect = require('util').inspect;
-const config = require('../config');
+var config = require('../config');
 
 module.exports.getNOAAForecast = function getNOAAForecast(req, res, next) {
-  const data = req.body;
+  const data = req.query;
+
+  if(!data || !data.lat || !data.lon) {
+    const err = "Incorrect Lat/ Lon params";
+    res.status(400).json({
+      message: err
+    });
+    next(err);
+    return;
+  }
+
 
     var obj = {
-    listLatLon: '38.99,-77.01 37.7833,-122.4167',
+    lat: data.lat,
+    lon: data.lon,
     product: 'time-series', // this is a default, it's not actually required
     begin: moment().format('YYYY-MM-DDTHH:mm:ss'),
     end: moment().add(7, 'days').format('YYYY-MM-DDTHH:mm:ss'),
@@ -31,6 +42,7 @@ module.exports.getNOAAForecast = function getNOAAForecast(req, res, next) {
   noaaForecaster.setToken(config.keys.NOAA_WEATHER_API_KEY);
   noaaForecaster.getForecast(obj)
     .then(function(results) {
+
       console.log(inspect(results, { colors: true, depth: Infinity }));
       res.status(200).json({
         message: results
