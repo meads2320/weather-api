@@ -3,6 +3,8 @@ var moment = require('moment');
 var inspect = require('util').inspect;
 var config = require('../config');
 
+noaaForecaster.setToken(config.keys.NOAA_WEATHER_API_KEY);
+
 module.exports.getNOAAForecast = function getNOAAForecast(req, res, next) {
   const data = req.query;
 
@@ -39,7 +41,7 @@ module.exports.getNOAAForecast = function getNOAAForecast(req, res, next) {
   };
 
 
-  noaaForecaster.setToken(config.keys.NOAA_WEATHER_API_KEY);
+
   noaaForecaster.getForecast(obj)
     .then(function(results) {
 

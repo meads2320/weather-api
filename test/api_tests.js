@@ -6,6 +6,7 @@ const noaaApi = require('../NOAA/api');
 const darkSkyApi = require('../DarkSky/api');
 const msnApi = require('../MSN/api');
 const yahooApi = require('../Yahoo/api');
+const openWeatherApi = require('../OpenWeather/api');
 
 describe('Get Weather', () => {
 
@@ -158,4 +159,31 @@ describe('Get Weather', () => {
     });
   });
 
+  it('should get Open Weather', (done) => {
+    const req = httpMocks.createRequest({
+      query: {
+          location: 'Tampa, FL'
+        }
+    });
+    const res = httpMocks.createResponse();
+
+    openWeatherApi.getOpenWeatherForecast(req, res, (result) => {
+      console.log('Open Weather', result);
+      done(assert(result != null));
+    });
+  });
+
+  it('should stop at validation for Open Weather', (done) => {
+    const req = httpMocks.createRequest({
+      query: {
+
+        }
+    });
+    const res = httpMocks.createResponse();
+
+    openWeatherApi.getOpenWeatherForecast(req, res, (result) => {
+      console.log('Open Weather', result);
+      done(assert(result === 'Incorrect Location Param'));
+    });
+  });
 });
