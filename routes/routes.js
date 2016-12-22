@@ -12,5 +12,6 @@ router.get('/getDarkSkyForecast', darkSkyApi.getDarkSkyForecast);
 router.get('/getMSNForecast', msnApi.getMSNForecast);
 router.get('/getYahooForecast', yahooApi.getYahooForecast);
 router.get('/getOpenWeatherForecast', openWeatherApi.getOpenWeatherForecast);
+router.get('/getOpenWeatherForecastByCoordinates', openWeatherApi.getOpenWeatherForecastByCoordinates);
 
 module.exports = router;

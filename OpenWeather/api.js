@@ -28,3 +28,31 @@ module.exports.getOpenWeatherForecast = function getOpenWeatherForecast(req, res
    });
 
   }
+
+  module.exports.getOpenWeatherForecastByCoordinates = function getOpenWeatherForecastByCoordinates(req, res, next) {
+    const data = req.query;
+     console.log(data);
+
+     if(!data || !data.lat || !data.lon) {
+       const err = "Incorrect Lat/ Lon params";
+       res.status(400).json({
+         message: err
+       });
+       next(err);
+       return;
+     }
+
+     let coordinates = {
+       lat: data.lat,
+       lon: data.lon
+     };
+
+      clima.currentByCoordinates({
+       coord: coordinates,
+         callback: function(err, data) {
+         next(data);
+         console.log(data);
+       }
+     });
+
+    }

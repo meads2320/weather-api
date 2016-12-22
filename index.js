@@ -17,7 +17,8 @@ app.get('/', function (req, res) {
   '<a target="_blank" href="/v1/getMSNForecast?location=Tampa, FL">MSN Weather with City, State</a><br/>' +
   '<a target="_blank" href="/v1/getNOAAForecast?lat=28.0&lon=-81.0">NOAA Weather</a><br/>' +
   '<a target="_blank" href="/v1/getYahooForecast?location=Tampa, FL">Yahoo Weather</a><br/>' +
-  '<a target="_blank" href="/v1/getOpenWeatherForecast?location=Tampa, FL">OpenWeather Weather</a><br/>'
+  '<a target="_blank" href="/v1/getOpenWeatherForecast?location=Tampa, FL">OpenWeather Weather By City</a><br/>' +
+  '<a target="_blank" href="/v1/getOpenWeatherForecastByCoordinates?lat=28.0&lon=-81.0">OpenWeather Weather By Coordinates</a><br/>'
   );
 })
 

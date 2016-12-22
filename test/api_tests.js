@@ -169,8 +169,37 @@ describe('Get Weather', () => {
 
     openWeatherApi.getOpenWeatherForecast(req, res, (result) => {
       console.log('Open Weather', result);
-      done(assert(result != null));
+      done(assert(JSON.stringify(result).includes("weather")));
+  });
     });
+
+  it('should fail validation for Open Weather By Coordinates', (done) => {
+    const req = httpMocks.createRequest({
+      query: {
+          location: 'Tampa, FL'
+        }
+    });
+    const res = httpMocks.createResponse();
+
+    openWeatherApi.getOpenWeatherForecastByCoordinates(req, res, (result) => {
+      console.log('Open Weather', result);
+      done(assert(result === "Incorrect Lat/ Lon params"));
+    });
+  });
+
+  it('should get Open Weather By Coordinates', (done) => {
+    const req = httpMocks.createRequest({
+      query: {
+          lat: 28.0,
+          lon: -82.0
+        }
+    });
+    const res = httpMocks.createResponse();
+
+    openWeatherApi.getOpenWeatherForecastByCoordinates(req, res, (result) => {
+      console.log('Open Weather', result);
+        done(assert(JSON.stringify(result).includes("weather")));
+      });
   });
 
   it('should stop at validation for Open Weather', (done) => {
@@ -186,4 +215,6 @@ describe('Get Weather', () => {
       done(assert(result === 'Incorrect Location Param'));
     });
   });
+
+  
 });
