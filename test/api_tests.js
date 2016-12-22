@@ -170,8 +170,8 @@ describe('Get Weather', () => {
     openWeatherApi.getOpenWeatherForecast(req, res, (result) => {
       console.log('Open Weather', result);
       done(assert(JSON.stringify(result).includes("weather")));
-  });
     });
+  });
 
   it('should fail validation for Open Weather By Coordinates', (done) => {
     const req = httpMocks.createRequest({
@@ -216,5 +216,5 @@ describe('Get Weather', () => {
     });
   });
 
-  
+
 });

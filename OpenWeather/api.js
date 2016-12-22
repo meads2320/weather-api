@@ -22,9 +22,17 @@ module.exports.getOpenWeatherForecast = function getOpenWeatherForecast(req, res
     clima.currentByCityName({
      cityName: data.location,
        callback: function(err, data) {
+         if(err){
+           res.status(400).json({
+             message: err
+           });
+           next(err);
+         }
+         else {
        next(data);
        console.log(data);
-     }
+      }
+    }
    });
 
   }
@@ -50,8 +58,16 @@ module.exports.getOpenWeatherForecast = function getOpenWeatherForecast(req, res
       clima.currentByCoordinates({
        coord: coordinates,
          callback: function(err, data) {
+           if(err){
+             res.status(400).json({
+               message: err
+             });
+             next(err);
+           }
+           else {
          next(data);
          console.log(data);
+        }
        }
      });
 
